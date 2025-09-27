@@ -1,0 +1,188 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Auto Commit - Quick",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/scripts/auto-commit.ps1",
+                "-Type",
+                "chore",
+                "-Message",
+                "${input:commitMessage}",
+                "-Push"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Auto Commit - Feature",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/scripts/auto-commit.ps1",
+                "-Type",
+                "feat",
+                "-Message",
+                "${input:commitMessage}",
+                "-Push"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Auto Commit - Fix",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/scripts/auto-commit.ps1",
+                "-Type",
+                "fix",
+                "-Message",
+                "${input:commitMessage}",
+                "-Push"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Auto Commit - Docs",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/scripts/auto-commit.ps1",
+                "-Type",
+                "docs",
+                "-Message",
+                "${input:commitMessage}",
+                "-Push"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Auto Commit - Watch Mode",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/scripts/auto-commit.ps1",
+                "-Watch"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated"
+            },
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Flutter: Hot Reload with Auto Commit",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["run", "--hot"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated"
+            },
+            "isBackground": true,
+            "dependsOn": "Auto Commit - Watch Mode",
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "commitMessage",
+            "description": "Mensaje del commit",
+            "default": "Cambios automáticos",
+            "type": "promptString"
+        },
+        {
+            "id": "commitType",
+            "description": "Tipo de commit",
+            "default": "chore",
+            "type": "pickString",
+            "options": [
+                {
+                    "label": "✨ Feature - Nueva funcionalidad",
+                    "value": "feat"
+                },
+                {
+                    "label": "🐛 Fix - Corrección de bugs",
+                    "value": "fix"
+                },
+                {
+                    "label": "📝 Docs - Documentación",
+                    "value": "docs"
+                },
+                {
+                    "label": "💄 Style - Cambios de estilo",
+                    "value": "style"
+                },
+                {
+                    "label": "♻️ Refactor - Refactorización",
+                    "value": "refactor"
+                },
+                {
+                    "label": "✅ Test - Tests",
+                    "value": "test"
+                },
+                {
+                    "label": "🔧 Build - Build/configuración",
+                    "value": "build"
+                },
+                {
+                    "label": "🔄 Chore - Otros cambios",
+                    "value": "chore"
+                }
+            ]
+        }
+    ]
+}
