@@ -86,7 +86,7 @@
 ---
 
 ### 🔗 Links Útiles
-- **Repositorio**: [Tu URL de repositorio]
+- **Repositorio**: https://github.com/josephCO986/Lectura
 - **APK Release**: `build/app/outputs/flutter-apk/app-release.apk`
 - **Documentación**: `README.md` y `DEVELOPMENT.md`
 
