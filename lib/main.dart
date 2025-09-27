@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/di/injection_container.dart';
 import 'features/lectura_temporal/presentation/pages/lectura_temporal_page.dart';
+import 'features/barcode_scanner/presentation/pages/barcode_scanner_page.dart';
+import 'features/barcode_scanner/presentation/bloc/barcode_scanner_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,10 +41,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    LecturaTemporalPage(),
-    ConfiguracionPage(),
-    PerfilPage(),
+  static final List<Widget> _widgetOptions = <Widget>[
+    const LecturaTemporalPage(),
+    BarcodeScannerPageWrapper(),
+    const ConfiguracionPage(),
+    const PerfilPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -55,8 +59,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Lecturas'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.qr_code_scanner),
+            label: 'Escáner',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Configuración',
@@ -132,6 +141,16 @@ class PerfilPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class BarcodeScannerPageWrapper extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => sl<BarcodeScannerBloc>(),
+      child: const BarcodeScannerPage(),
     );
   }
 }

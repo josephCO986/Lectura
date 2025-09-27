@@ -36,6 +36,13 @@ dependencies:
   
   # UI Components
   flutter_svg: ^2.0.10+1
+  
+  # Barcode/QR Scanner
+  mobile_scanner: ^5.2.3
+  permission_handler: ^11.3.1
+  
+  # Audio feedback
+  audioplayers: ^6.1.0
 
 dev_dependencies:
   flutter_test:
